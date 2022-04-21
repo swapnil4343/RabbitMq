@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<center><h3>Message Queue Manager</h3></center>
+<table border=1>
+    <tr>
+        <th>Queue Name</th>
+        <th>Message</th>
+        <th>Response</th>
+    </tr>
+
+    {% for qinfos in qinfo %}
+        <tr>
+            <td>{{qinfos["queue"]}}</td>
+            <td>{{qinfos["msg"]}}</td>
+            {% if qinfos["status"]==0  %}
+                <td style="color:green">READ</td>
+            {% elif qinfos["status"]==1  %}
+                <td style="color:yellow">DELIVERED</td>
+            {% else %}
+                <td style="color:red">ERROR</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}
